@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Review business name -->
+  <title>Reserva tu clase — F96</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <!-- Calendly widget CSS -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --black:   #0d0d0d;
+      --coal:    #1a1a1a;
+      --ash:     #2e2e2e;
+      --beige:   #e8dcc8;
+      --sand:    #c9b99a;
+      --amber:   #d4863a;
+      --white:   #f5f0e8;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--beige);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.65;
+      overflow-x: hidden;
+      min-height: 100svh;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── LANDING LAYOUT ── */
+    .landing-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100svh;
+    }
+
+    /* LEFT — visual/copy */
+    .landing-left {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 5vh 5vw 8vh;
+    }
+    .landing-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(13,13,13,.95) 25%, rgba(13,13,13,.4) 70%),
+        url('assets/gym.jpg') center/cover no-repeat;
+    }
+    .landing-logo {
+      position: absolute;
+      top: 2.5rem;
+      left: 5vw;
+      font-family: var(--font-display);
+      font-size: 2rem;
+      letter-spacing: .06em;
+      color: var(--beige);
+      z-index: 2;
+      /* Review business name */
+    }
+    .landing-logo span { color: var(--amber); }
+    .landing-copy { position: relative; z-index: 2; }
+    .landing-eyebrow {
+      font-size: .72rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: .8rem;
+    }
+    .landing-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      line-height: .92;
+      color: var(--beige);
+      margin-bottom: 1.4rem;
+    }
+    .landing-title em { color: var(--amber); font-style: normal; }
+    .landing-sub {
+      font-size: .92rem;
+      color: var(--sand);
+      max-width: 400px;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+    .proof-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+    .pill {
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      background: rgba(232,220,200,.07);
+      border: 1px solid rgba(232,220,200,.15);
+      color: var(--sand);
+      padding: .4rem 1rem;
+    }
+
+    /* RIGHT — form */
+    .landing-right {
+      background: var(--coal);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8vh 6vw;
+      border-left: 1px solid rgba(232,220,200,.06);
+    }
+    .form-label {
+      font-size: .72rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: .6rem;
+    }
+    .form-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3vw, 3rem);
+      letter-spacing: .04em;
+      color: var(--beige);
+      margin-bottom: .5rem;
+      line-height: 1;
+    }
+    .form-sub {
+      font-size: .84rem;
+      color: var(--sand);
+      margin-bottom: 2.5rem;
+    }
+
+    /* form fields */
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+    }
+    .field label {
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--sand);
+    }
+    .field input {
+      background: var(--ash);
+      border: 1px solid rgba(232,220,200,.1);
+      color: var(--beige);
+      font-family: var(--font-body);
+      font-size: .95rem;
+      font-weight: 300;
+      padding: .9rem 1.1rem;
+      outline: none;
+      transition: border-color .2s;
+      width: 100%;
+      -webkit-appearance: none;
+    }
+    .field input::placeholder { color: rgba(201,185,154,.35); }
+    .field input:focus { border-color: var(--amber); }
+    .field input.error { border-color: #c0392b; }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--amber);
+      color: var(--black);
+      border: none;
+      font-family: var(--font-body);
+      font-size: .85rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: 1rem;
+      cursor: pointer;
+      transition: opacity .2s;
+      margin-bottom: 1rem;
+    }
+    .submit-btn:hover { opacity: .85; }
+    .submit-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+    .form-privacy {
+      font-size: .75rem;
+      color: var(--sand);
+      opacity: .55;
+      text-align: center;
+      line-height: 1.6;
+    }
+    .form-privacy a { color: var(--amber); opacity: 1; }
+
+    /* success state */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem 0;
+    }
+    .form-success.visible { display: block; }
+    .form-block.hidden { display: none; }
+    .success-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .success-title {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      color: var(--beige);
+      margin-bottom: .8rem;
+    }
+    .success-msg {
+      font-size: .9rem;
+      color: var(--sand);
+      margin-bottom: 2rem;
+    }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .section-divider::before,
+    .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(232,220,200,.1);
+    }
+    .section-divider span {
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--sand);
+      opacity: .5;
+      white-space: nowrap;
+    }
+
+    /* ── CALENDLY ── */
+    .calendly-label {
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: .8rem;
+      display: block;
+    }
+    .calendly-wrapper {
+      background: var(--ash);
+      border: 1px solid rgba(232,220,200,.08);
+      overflow: hidden;
+      min-height: 500px;
+    }
+
+    /* Calendly inline widget overrides */
+    .calendly-inline-widget {
+      min-width: 100% !important;
+      height: 600px !important;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .landing-wrap {
+        grid-template-columns: 1fr;
+      }
+      .landing-left {
+        min-height: 55vh;
+        padding: 5rem 5vw 4vh;
+      }
+      .landing-right {
+        border-left: none;
+        border-top: 1px solid rgba(232,220,200,.06);
+        padding: 5vh 5vw;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="landing-wrap">
+
+    <!-- ── LEFT ─────────────────────────────────────────── -->
+    <div class="landing-left">
+      <div class="landing-bg"></div>
+      <!-- Review business name -->
+      <a href="index.html" class="landing-logo">F<span>96</span></a>
+
+      <div class="landing-copy">
+        <p class="landing-eyebrow">Primera sesión · Sin compromiso</p>
+        <!-- Review business name -->
+        <h1 class="landing-title">Tu primera<br>clase en <em>F96</em><br>es gratis</h1>
+        <p class="landing-sub">
+          Reserva ahora, ven a entrenar y descubre por qué los grupos pequeños marcan la diferencia. Sin ataduras, sin letra pequeña.
+        </p>
+        <div class="proof-pills">
+          <span class="pill">⚡ Circuit training</span>
+          <span class="pill">🏋 Fitness funcional</span>
+          <span class="pill">👥 Máx. 6 personas</span>
+          <span class="pill">📍 Sevilla</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── RIGHT ─────────────────────────────────────────── -->
+    <div class="landing-right">
+
+      <!-- STEP 1: Contact form -->
+      <div id="form-block" class="form-block">
+        <p class="form-label">Paso 1 de 2</p>
+        <h2 class="form-title">Tus datos</h2>
+        <p class="form-sub">Rellena el formulario y luego elige la franja horaria que mejor te venga.</p>
+
+        <div class="field-group">
+          <div class="field">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej. Ana García" autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" placeholder="tu@email.com" autocomplete="email" />
+          </div>
+          <div class="field">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="+34 600 000 000" autocomplete="tel" />
+          </div>
+        </div>
+
+        <button class="submit-btn" id="submit-btn" type="button">Siguiente — elegir horario</button>
+        <p class="form-privacy">
+          Al continuar aceptas nuestra <a href="#">política de privacidad</a>.<br>Tus datos nunca se ceden a terceros.
+        </p>
+      </div>
+
+      <!-- STEP 2: Calendly -->
+      <div id="calendly-block" style="display:none">
+        <p class="form-label">Paso 2 de 2</p>
+        <h2 class="form-title">Elige tu día</h2>
+        <p class="form-sub">Selecciona la sesión que mejor encaje en tu agenda.</p>
+
+        <div class="calendly-wrapper">
+          <!--
+            ╔══════════════════════════════════════════════════════════════╗
+            ║  CALENDLY EMBED — ACCIÓN REQUERIDA                          ║
+            ║                                                              ║
+            ║  1. Ve a https://calendly.com y crea una cuenta gratuita    ║
+            ║  2. Crea un tipo de evento llamado "Primera clase F96"      ║
+            ║  3. Conecta tu Google Calendar en Calendly > Integrations   ║
+            ║  4. Copia tu URL personal (ej: calendly.com/f96/clase)      ║
+            ║  5. Reemplaza el valor de data-url abajo con esa URL        ║
+            ╚══════════════════════════════════════════════════════════════╝
+          -->
+          <div
+            class="calendly-inline-widget"
+            data-url="https://calendly.com/TU_USUARIO/primera-clase?hide_gdpr_banner=1&background_color=1a1a1a&text_color=e8dcc8&primary_color=d4863a"
+            style="min-width:100%;height:600px;">
+          </div>
+        </div>
+
+        <p style="margin-top:1rem;font-size:.75rem;color:var(--sand);opacity:.5">
+          Recibirás una confirmación por email con todos los detalles de tu sesión.
+        </p>
+      </div>
+
+      <!-- SUCCESS (post-calendly) -->
+      <div class="form-success" id="form-success">
+        <div class="success-icon">✓</div>
+        <div class="success-title">¡Reserva confirmada!</div>
+        <p class="success-msg">
+          Te hemos enviado un email con los detalles. Si tienes cualquier duda, escríbenos a
+          <a href="mailto:info@f96.es" style="color:var(--amber)">info@f96.es</a><!-- Review -->.
+        </p>
+        <a href="index.html" style="font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sand);border-bottom:1px solid rgba(201,185,154,.3);padding-bottom:.2rem;">
+          ← Volver a la web
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Calendly JS widget -->
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
+  <script>
+    const submitBtn = document.getElementById('submit-btn');
+    const formBlock = document.getElementById('form-block');
+    const calendlyBlock = document.getElementById('calendly-block');
+
+    submitBtn.addEventListener('click', () => {
+      // Basic validation
+      const nombre   = document.getElementById('nombre').value.trim();
+      const email    = document.getElementById('email').value.trim();
+      const telefono = document.getElementById('telefono').value.trim();
+      let valid = true;
+
+      ['nombre','email','telefono'].forEach(id => {
+        document.getElementById(id).classList.remove('error');
+      });
+
+      if (!nombre) { document.getElementById('nombre').classList.add('error'); valid = false; }
+      if (!email || !email.includes('@')) { document.getElementById('email').classList.add('error'); valid = false; }
+      if (!telefono) { document.getElementById('telefono').classList.add('error'); valid = false; }
+
+      if (!valid) return;
+
+      // Optionally: send to a backend / CRM / email service here
+      // fetch('/api/leads', { method:'POST', body: JSON.stringify({nombre, email, telefono}) })
+
+      // Show Calendly step
+      formBlock.style.display = 'none';
+      calendlyBlock.style.display = 'block';
+
+      // Pre-fill Calendly with email if supported
+      // (Calendly's inline widget picks up a_token & prefill via data-url params)
+      const widget = document.querySelector('.calendly-inline-widget');
+      if (widget) {
+        const currentUrl = widget.getAttribute('data-url');
+        const encoded = encodeURIComponent(email);
+        const newUrl = currentUrl.includes('?')
+          ? `${currentUrl}&email=${encoded}&name=${encodeURIComponent(nombre)}`
+          : `${currentUrl}?email=${encoded}&name=${encodeURIComponent(nombre)}`;
+        widget.setAttribute('data-url', newUrl);
+        // Re-initialize widget
+        if (window.Calendly) Calendly.initInlineWidgets();
+      }
+    });
+
+    // Listen for Calendly event scheduled
+    window.addEventListener('message', function(e) {
+      if (e.data.event && e.data.event === 'calendly.event_scheduled') {
+        calendlyBlock.style.display = 'none';
+        document.getElementById('form-success').classList.add('visible');
+      }
+    });
+  </script>
+</body>
+</html>

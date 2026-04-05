@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Review business name -->
+  <title>F96 — Entrena diferente</title>
+  <meta name="description" content="F96 es un espacio de entrenamiento en grupo con metodología funcional y de circuito. Grupos reducidos, entrenamiento real, resultados visibles." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────── */
+    :root {
+      --black:   #0d0d0d;
+      --coal:    #1a1a1a;
+      --ash:     #2e2e2e;
+      --beige:   #e8dcc8;
+      --sand:    #c9b99a;
+      --amber:   #d4863a;
+      --white:   #f5f0e8;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+      --nav-h: 72px;
+    }
+
+    /* ─── RESET ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--beige);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── NAV ────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5vw;
+      transition: background .35s, backdrop-filter .35s;
+    }
+    nav.scrolled {
+      background: rgba(13,13,13,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(232,220,200,.08);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      letter-spacing: .06em;
+      color: var(--beige);
+      /* Review business name */
+    }
+    .nav-logo span { color: var(--amber); }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: .82rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--sand);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--beige); }
+    .nav-cta {
+      font-size: .8rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      border: 1px solid var(--amber);
+      color: var(--amber);
+      padding: .55rem 1.4rem;
+      transition: background .2s, color .2s;
+    }
+    .nav-cta:hover { background: var(--amber); color: var(--black); }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--beige);
+      transition: .3s;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--black);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      letter-spacing: .08em;
+      color: var(--beige);
+    }
+    .mobile-close {
+      position: absolute;
+      top: 1.5rem; right: 5vw;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      color: var(--beige);
+      cursor: pointer;
+    }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    #inicio {
+      position: relative;
+      height: 100svh;
+      min-height: 600px;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 5vw 8vh;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(13,13,13,.92) 30%, rgba(13,13,13,.3) 70%),
+        url('assets/gym.jpg') center/cover no-repeat;
+    }
+    .hero-content {
+      position: relative;
+      max-width: 760px;
+    }
+    .hero-eyebrow {
+      font-size: .78rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1rem;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 10vw, 9rem);
+      line-height: .92;
+      letter-spacing: .02em;
+      color: var(--beige);
+      margin-bottom: 1.6rem;
+    }
+    .hero-title em { color: var(--amber); font-style: normal; }
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--sand);
+      max-width: 480px;
+      margin-bottom: 2.4rem;
+      line-height: 1.7;
+    }
+    .hero-actions { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+    .btn-primary {
+      font-size: .82rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      background: var(--amber);
+      color: var(--black);
+      padding: .9rem 2.2rem;
+      font-weight: 500;
+      transition: opacity .2s;
+    }
+    .btn-primary:hover { opacity: .85; }
+    .btn-ghost {
+      font-size: .82rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      border: 1px solid rgba(232,220,200,.35);
+      color: var(--beige);
+      padding: .9rem 2.2rem;
+      transition: border-color .2s;
+    }
+    .btn-ghost:hover { border-color: var(--beige); }
+
+    /* scroll indicator */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 5vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+      opacity: .45;
+    }
+    .scroll-hint span {
+      font-size: .68rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--sand), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100% { transform: scaleY(1); opacity: .45; }
+      50%      { transform: scaleY(.5); opacity: .15; }
+    }
+
+    /* ─── SECTION COMMONS ────────────────────────────────── */
+    section { padding: 10vh 5vw; }
+    .label {
+      font-size: .72rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: .8rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 6vw, 5.5rem);
+      line-height: .95;
+      letter-spacing: .02em;
+      color: var(--beige);
+      margin-bottom: 1.5rem;
+    }
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: var(--amber);
+      margin-bottom: 2.5rem;
+    }
+
+    /* ─── SOBRE NOSOTROS ─────────────────────────────────── */
+    #sobre {
+      background: var(--coal);
+      border-top: 1px solid rgba(232,220,200,.06);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5vw;
+      align-items: start;
+      max-width: 1200px;
+    }
+    .about-text p {
+      color: var(--sand);
+      margin-bottom: 1.2rem;
+      font-size: .95rem;
+    }
+    .about-text p strong { color: var(--beige); font-weight: 500; }
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 3rem;
+    }
+    .stat {
+      background: var(--ash);
+      padding: 1.8rem 1.4rem;
+    }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      color: var(--amber);
+      letter-spacing: .02em;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: .75rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-top: .4rem;
+    }
+
+    /* space image column */
+    .about-visual {
+      position: sticky;
+      top: calc(var(--nav-h) + 2rem);
+    }
+    .about-img-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+    .about-img-wrap img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      filter: brightness(.85) contrast(1.05);
+      transition: transform .6s ease;
+    }
+    .about-img-wrap:hover img { transform: scale(1.03); }
+    .about-img-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(13,13,13,.85));
+      padding: 3rem 1.5rem 1.5rem;
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--sand);
+    }
+
+    /* ─── TRAINER ────────────────────────────────────────── */
+    #equipo {
+      background: var(--black);
+      border-top: 1px solid rgba(232,220,200,.06);
+    }
+    .trainer-card {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 5vw;
+      max-width: 1000px;
+      align-items: start;
+      margin-top: 3rem;
+    }
+    .trainer-photo {
+      aspect-ratio: 3/4;
+      background: var(--ash);
+      overflow: hidden;
+      position: relative;
+    }
+    .trainer-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      filter: grayscale(20%) contrast(1.1);
+    }
+    .trainer-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--ash);
+      font-family: var(--font-display);
+      font-size: 5rem;
+      color: var(--amber);
+      letter-spacing: .06em;
+    }
+    .trainer-name {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      letter-spacing: .04em;
+      line-height: 1;
+      color: var(--beige);
+      margin-bottom: .5rem;
+    }
+    .trainer-role {
+      font-size: .78rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.8rem;
+    }
+    .trainer-bio {
+      color: var(--sand);
+      font-size: .95rem;
+      margin-bottom: 2rem;
+    }
+    .trainer-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-bottom: 2rem;
+    }
+    .tag {
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border: 1px solid var(--ash);
+      color: var(--sand);
+      padding: .4rem .9rem;
+    }
+    .credentials {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .cred {
+      background: var(--coal);
+      padding: 1rem 1.2rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .cred-icon { color: var(--amber); font-size: 1rem; flex-shrink: 0; margin-top: .1rem; }
+    .cred-text { font-size: .86rem; color: var(--sand); }
+    .cred-text strong { color: var(--beige); display: block; font-weight: 500; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; }
+
+    /* ─── ACTIVIDADES ────────────────────────────────────── */
+    #actividades {
+      background: var(--coal);
+      border-top: 1px solid rgba(232,220,200,.06);
+    }
+    .activities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2px;
+      margin-top: 3rem;
+      max-width: 1200px;
+    }
+    .activity-card {
+      background: var(--ash);
+      padding: 2.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: background .25s;
+    }
+    .activity-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 0;
+      background: var(--amber);
+      transition: height .3s ease;
+    }
+    .activity-card:hover { background: #252525; }
+    .activity-card:hover::before { height: 100%; }
+    .activity-icon {
+      font-size: 2rem;
+      margin-bottom: 1.2rem;
+    }
+    .activity-name {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      letter-spacing: .04em;
+      color: var(--beige);
+      margin-bottom: .8rem;
+    }
+    .activity-desc {
+      font-size: .88rem;
+      color: var(--sand);
+      line-height: 1.7;
+    }
+    .activity-badge {
+      display: inline-block;
+      margin-top: 1.5rem;
+      font-size: .68rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      background: rgba(212,134,58,.15);
+      color: var(--amber);
+      border: 1px solid rgba(212,134,58,.3);
+      padding: .35rem .8rem;
+    }
+
+    /* yoga teaser */
+    .activity-card.coming-soon {
+      opacity: .5;
+      filter: grayscale(1);
+    }
+    .activity-card.coming-soon::after {
+      content: 'Próximamente';
+      position: absolute;
+      top: 1rem; right: 1rem;
+      font-size: .65rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      background: var(--ash);
+      color: var(--sand);
+      padding: .3rem .7rem;
+      border: 1px solid var(--ash);
+    }
+
+    /* ─── PRECIOS ────────────────────────────────────────── */
+    #precios {
+      background: var(--black);
+      border-top: 1px solid rgba(232,220,200,.06);
+    }
+    .pricing-intro {
+      max-width: 540px;
+      margin-bottom: 4rem;
+    }
+    .pricing-intro p { color: var(--sand); font-size: .95rem; }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2px;
+      max-width: 1100px;
+    }
+    .price-card {
+      background: var(--coal);
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: background .25s;
+      position: relative;
+    }
+    .price-card:hover { background: var(--ash); }
+    .price-card.highlight {
+      background: var(--ash);
+      border-top: 3px solid var(--amber);
+    }
+    .price-card.highlight::before {
+      content: 'Más popular';
+      position: absolute;
+      top: -1px; right: 1.5rem;
+      font-size: .65rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      background: var(--amber);
+      color: var(--black);
+      padding: .3rem .8rem;
+    }
+    .price-freq {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      letter-spacing: .04em;
+      color: var(--beige);
+    }
+    .price-days {
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--sand);
+    }
+    .price-amount {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      line-height: 1;
+      color: var(--amber);
+      letter-spacing: .02em;
+    }
+    .price-amount sup {
+      font-size: 1.5rem;
+      vertical-align: super;
+      margin-right: .2rem;
+    }
+    .price-note {
+      font-size: .75rem;
+      color: var(--sand);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .price-perks {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      padding-top: .5rem;
+      border-top: 1px solid rgba(232,220,200,.08);
+    }
+    .price-perks li {
+      font-size: .82rem;
+      color: var(--sand);
+      display: flex;
+      gap: .6rem;
+      align-items: flex-start;
+    }
+    .price-perks li::before {
+      content: '—';
+      color: var(--amber);
+      flex-shrink: 0;
+    }
+    .price-cta {
+      margin-top: auto;
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      border: 1px solid rgba(232,220,200,.2);
+      color: var(--beige);
+      padding: .75rem 1.2rem;
+      text-align: center;
+      transition: background .2s, border-color .2s;
+      cursor: pointer;
+    }
+    .price-cta:hover, .price-card.highlight .price-cta {
+      background: var(--amber);
+      border-color: var(--amber);
+      color: var(--black);
+    }
+    .pricing-note {
+      margin-top: 2.5rem;
+      font-size: .8rem;
+      color: var(--sand);
+      opacity: .65;
+    }
+
+    /* ─── CONTACT STRIP ──────────────────────────────────── */
+    #contacto {
+      background: var(--coal);
+      border-top: 1px solid rgba(232,220,200,.06);
+      padding: 8vh 5vw;
+      display: flex;
+      gap: 4vw;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .contact-left h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      letter-spacing: .04em;
+      color: var(--beige);
+      margin-bottom: .5rem;
+    }
+    .contact-left p { color: var(--sand); font-size: .9rem; }
+    .contact-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(232,220,200,.06);
+      padding: 4rem 5vw 2.5rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3vw;
+      margin-bottom: 3rem;
+    }
+    .footer-brand .nav-logo { font-size: 2.5rem; display: inline-block; margin-bottom: 1rem; }
+    .footer-brand p { font-size: .82rem; color: var(--sand); max-width: 240px; line-height: 1.7; }
+    .footer-col h4 {
+      font-size: .72rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.2rem;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+    .footer-col ul li a {
+      font-size: .84rem;
+      color: var(--sand);
+      transition: color .2s;
+    }
+    .footer-col ul li a:hover { color: var(--beige); }
+    .footer-bottom {
+      border-top: 1px solid rgba(232,220,200,.06);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-bottom p { font-size: .75rem; color: var(--sand); opacity: .5; }
+    .footer-legal { display: flex; gap: 1.5rem; }
+    .footer-legal a { font-size: .75rem; color: var(--sand); opacity: .5; transition: opacity .2s; }
+    .footer-legal a:hover { opacity: 1; }
+
+    /* ─── COOKIE BANNER ──────────────────────────────────── */
+    #cookie-banner {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      right: 1.5rem;
+      max-width: 560px;
+      background: var(--coal);
+      border: 1px solid rgba(232,220,200,.12);
+      padding: 1.8rem 2rem;
+      z-index: 999;
+      display: none;
+      box-shadow: 0 8px 40px rgba(0,0,0,.6);
+    }
+    #cookie-banner.visible { display: block; }
+    .cookie-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      letter-spacing: .04em;
+      color: var(--beige);
+      margin-bottom: .5rem;
+    }
+    #cookie-banner p {
+      font-size: .82rem;
+      color: var(--sand);
+      margin-bottom: 1.2rem;
+      line-height: 1.6;
+    }
+    #cookie-banner a { color: var(--amber); text-decoration: underline; }
+    .cookie-actions { display: flex; gap: .8rem; flex-wrap: wrap; }
+    .cookie-accept {
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      background: var(--amber);
+      color: var(--black);
+      border: none;
+      padding: .65rem 1.5rem;
+      cursor: pointer;
+      font-weight: 500;
+      transition: opacity .2s;
+    }
+    .cookie-accept:hover { opacity: .85; }
+    .cookie-reject {
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      background: none;
+      color: var(--sand);
+      border: 1px solid rgba(232,220,200,.2);
+      padding: .65rem 1.5rem;
+      cursor: pointer;
+      transition: border-color .2s;
+    }
+    .cookie-reject:hover { border-color: var(--sand); }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-visual { position: static; }
+      .trainer-card { grid-template-columns: 1fr; }
+      .trainer-photo { max-width: 280px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .hero-title { line-height: .95; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      #cookie-banner { left: 1rem; right: 1rem; bottom: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ──────────────────────────────────────────────── -->
+  <nav id="main-nav">
+    <!-- Review business name -->
+    <a href="#inicio" class="nav-logo">F<span>96</span></a>
+    <ul class="nav-links">
+      <li><a href="#sobre">Nosotros</a></li>
+      <li><a href="#equipo">Equipo</a></li>
+      <li><a href="#actividades">Actividades</a></li>
+      <li><a href="#precios">Tarifas</a></li>
+    </ul>
+    <a href="landing.html" class="nav-cta">Reservar clase</a>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- mobile menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-close" id="mobile-close">✕</button>
+    <a href="#sobre" class="mm-link">Nosotros</a>
+    <a href="#equipo" class="mm-link">Equipo</a>
+    <a href="#actividades" class="mm-link">Actividades</a>
+    <a href="#precios" class="mm-link">Tarifas</a>
+    <a href="landing.html" style="color:var(--amber)">Reservar</a>
+  </div>
+
+  <!-- ── HERO ─────────────────────────────────────────────── -->
+  <section id="inicio">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Entrenamiento en grupo · Sevilla</p>
+      <!-- Review business name -->
+      <h1 class="hero-title">Entrena<br>en <em>F96</em></h1>
+      <p class="hero-sub">Grupos reducidos, metodología funcional y de circuito. Un espacio diseñado para que cada sesión cuente.</p>
+      <div class="hero-actions">
+        <a href="landing.html" class="btn-primary">Reserva tu clase</a>
+        <a href="#sobre" class="btn-ghost">Conócenos</a>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ── SOBRE NOSOTROS ────────────────────────────────────── -->
+  <section id="sobre">
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="label">Sobre nosotros</p>
+        <h2 class="section-title">Un espacio<br>construido<br>para rendir</h2>
+        <div class="divider"></div>
+        <!-- Review business name -->
+        <p>
+          <strong>F96 nació de una idea simple: que entrenar bien no debería ser exclusivo.</strong> Queríamos crear un espacio donde el equipo técnico, el ambiente y la metodología estuvieran al nivel de los mejores centros del mundo, pero accesible, cercano y diseñado para la realidad del día a día.
+        </p>
+        <p>
+          Trabajamos en grupos reducidos porque creemos que la atención personalizada y la energía colectiva no son incompatibles. Aquí cada persona tiene su nombre, su objetivo y su proceso. El grupo suma; nunca resta.
+        </p>
+        <p>
+          El espacio habla por sí solo: suelo de goma premium, racks de cable, sled track de 8 metros, cuerdas de batalla, mancuernas desde 2 hasta 50 kg y paredes de ladrillo visto que recuerdan que aquí se trabaja de verdad. Sin distracciones. Sin ruido. Solo tú y el entreno.
+        </p>
+        <p>
+          Nuestra metodología combina <strong>entrenamiento funcional</strong> y <strong>circuito de alta intensidad</strong>, adaptado al nivel de cada alumno, con progresiones que garantizan resultados visibles y sostenibles.
+        </p>
+
+        <div class="about-stats">
+          <div class="stat">
+            <div class="stat-num">6</div>
+            <div class="stat-label">Plazas máximo por grupo</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">8m</div>
+            <div class="stat-label">Sled track interior</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">2</div>
+            <div class="stat-label">Disciplinas activas</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Sesiones guiadas</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-visual">
+        <div class="about-img-wrap">
+          <img src="assets/gym.jpg" alt="Interior de F96 — Review business name" />
+          <div class="about-img-caption">F96 · Sevilla<!-- Review business name --></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EQUIPO ─────────────────────────────────────────────── -->
+  <section id="equipo">
+    <p class="label">El equipo</p>
+    <h2 class="section-title">Quién hay<br>detrás</h2>
+    <div class="divider"></div>
+
+    <div class="trainer-card">
+      <div class="trainer-photo">
+        <!-- If you have a photo of Miguel, place it at assets/miguel.jpg -->
+        <div class="trainer-photo-placeholder">MO</div>
+      </div>
+      <div>
+        <h3 class="trainer-name">Miguel Oliver<br>Ramírez</h3>
+        <p class="trainer-role">Head Coach &amp; Fundador<!-- Review business name --></p>
+        <p class="trainer-bio">
+          Miguel es el motor detrás de F96<!-- Review business name -->. Licenciado en Ciencias de la Actividad Física y el Deporte, ha dedicado su carrera a entender el movimiento humano y a trasladarlo a programas de entrenamiento que funcionan en la práctica, no solo en el papel.
+        </p>
+        <p class="trainer-bio">
+          Su enfoque parte de la técnica y la progresión como pilares irrenunciables. Cada sesión está diseñada con intención: nada es aleatorio, todo tiene un por qué.
+        </p>
+
+        <div class="trainer-tags">
+          <span class="tag">Entrenamiento funcional</span>
+          <span class="tag">Fuerza &amp; acondicionamiento</span>
+          <span class="tag">Circuit training</span>
+          <span class="tag">Corrección postural</span>
+        </div>
+
+        <div class="credentials">
+          <div class="cred">
+            <div class="cred-icon">▸</div>
+            <div class="cred-text">
+              <strong>Formación académica</strong>
+              Grado en Ciencias de la Actividad Física y el Deporte
+            </div>
+          </div>
+          <div class="cred">
+            <div class="cred-icon">▸</div>
+            <div class="cred-text">
+              <strong>Máster — [Revisar y completar]</strong>
+              Especialización pendiente de confirmar
+            </div>
+          </div>
+          <div class="cred">
+            <div class="cred-icon">▸</div>
+            <div class="cred-text">
+              <strong>Experiencia profesional — [Revisar y completar]</strong>
+              Trayectoria y centros anteriores pendientes de confirmar
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ACTIVIDADES ────────────────────────────────────────── -->
+  <section id="actividades">
+    <p class="label">Qué hacemos</p>
+    <h2 class="section-title">Actividades</h2>
+    <div class="divider"></div>
+
+    <div class="activities-grid">
+      <div class="activity-card">
+        <div class="activity-icon">⚡</div>
+        <div class="activity-name">Circuit Training</div>
+        <p class="activity-desc">
+          Sesiones de alta intensidad estructuradas en estaciones. Cada circuito combina trabajo cardiovascular, fuerza y coordinación en un formato dinámico que mantiene el cuerpo y la mente activos de principio a fin.
+        </p>
+        <p class="activity-desc" style="margin-top:.8rem">
+          Grupos de máximo 6 personas. Correcciones técnicas constantes. Sin tiempo muerto: cada segundo cuenta.
+        </p>
+        <span class="activity-badge">Grupos reducidos · Máx. 6</span>
+      </div>
+
+      <div class="activity-card">
+        <div class="activity-icon">🏋</div>
+        <div class="activity-name">Fitness Funcional</div>
+        <p class="activity-desc">
+          Trabajo basado en patrones de movimiento reales: empuje, tirón, bisagra, sentadilla, cargada. Desarrollamos fuerza útil, movilidad articular y estabilidad central con progresiones individualizadas dentro del grupo.
+        </p>
+        <p class="activity-desc" style="margin-top:.8rem">
+          Ideal para quienes quieren resultados sólidos y duraderos con una metodología que tiene sentido biomecánico.
+        </p>
+        <span class="activity-badge">Grupos reducidos · Máx. 6</span>
+      </div>
+
+      <div class="activity-card coming-soon">
+        <div class="activity-icon">🧘</div>
+        <div class="activity-name">Yoga / Pilates</div>
+        <p class="activity-desc">
+          Estamos trabajando para incorporar sesiones de yoga y pilates con instructores especializados. Una disciplina que complementa perfectamente el trabajo de fuerza e intensidad.
+        </p>
+        <span class="activity-badge">Próximamente</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRECIOS ────────────────────────────────────────────── -->
+  <section id="precios">
+    <p class="label">Tarifas</p>
+    <h2 class="section-title">Elige<br>tu ritmo</h2>
+    <div class="divider"></div>
+    <div class="pricing-intro">
+      <p>Todos los bonos incluyen acceso a todas las actividades disponibles, seguimiento personalizado y ajuste de programa según tu evolución. Sin permanencias.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-freq">1 día / semana</div>
+        <div class="price-days">4 sesiones al mes</div>
+        <div class="price-amount"><sup>€</sup><!-- [Revisar precio] --><span style="font-size:1.5rem;color:var(--sand)">— —</span></div>
+        <div class="price-note">al mes · sin permanencia</div>
+        <ul class="price-perks">
+          <li>1 sesión semanal</li>
+          <li>Acceso a circuit &amp; funcional</li>
+          <li>Seguimiento del entrenador</li>
+        </ul>
+        <a href="landing.html" class="price-cta">Reservar plaza</a>
+      </div>
+
+      <div class="price-card highlight">
+        <div class="price-freq">2 días / semana</div>
+        <div class="price-days">8 sesiones al mes</div>
+        <div class="price-amount"><sup>€</sup><!-- [Revisar precio] --><span style="font-size:1.5rem;color:var(--sand)">— —</span></div>
+        <div class="price-note">al mes · sin permanencia</div>
+        <ul class="price-perks">
+          <li>2 sesiones semanales</li>
+          <li>Acceso a circuit &amp; funcional</li>
+          <li>Seguimiento del entrenador</li>
+          <li>Ajuste de programa mensual</li>
+        </ul>
+        <a href="landing.html" class="price-cta">Reservar plaza</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-freq">3 días / semana</div>
+        <div class="price-days">12 sesiones al mes</div>
+        <div class="price-amount"><sup>€</sup><!-- [Revisar precio] --><span style="font-size:1.5rem;color:var(--sand)">— —</span></div>
+        <div class="price-note">al mes · sin permanencia</div>
+        <ul class="price-perks">
+          <li>3 sesiones semanales</li>
+          <li>Acceso a circuit &amp; funcional</li>
+          <li>Seguimiento del entrenador</li>
+          <li>Ajuste de programa mensual</li>
+        </ul>
+        <a href="landing.html" class="price-cta">Reservar plaza</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-freq">4 días / semana</div>
+        <div class="price-days">16 sesiones al mes</div>
+        <div class="price-amount"><sup>€</sup><!-- [Revisar precio] --><span style="font-size:1.5rem;color:var(--sand)">— —</span></div>
+        <div class="price-note">al mes · sin permanencia</div>
+        <ul class="price-perks">
+          <li>4 sesiones semanales</li>
+          <li>Acceso a circuit &amp; funcional</li>
+          <li>Seguimiento del entrenador</li>
+          <li>Ajuste de programa mensual</li>
+          <li>Prioridad en reservas</li>
+        </ul>
+        <a href="landing.html" class="price-cta">Reservar plaza</a>
+      </div>
+    </div>
+
+    <p class="pricing-note">* Los precios están pendientes de confirmación. Contacta para más información o para reservar tu primera sesión gratuita de prueba.</p>
+  </section>
+
+  <!-- ── CONTACT STRIP ──────────────────────────────────────── -->
+  <div id="contacto">
+    <div class="contact-left">
+      <!-- Review business name -->
+      <h2>¿Listo para empezar?</h2>
+      <p>Reserva tu primera sesión de prueba sin compromiso.</p>
+    </div>
+    <div class="contact-actions">
+      <a href="landing.html" class="btn-primary">Reservar ahora</a>
+      <a href="mailto:info@f96.es" class="btn-ghost">Escríbenos</a>
+      <!-- Review business name — update email -->
+    </div>
+  </div>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <!-- Review business name -->
+        <span class="nav-logo">F<span style="color:var(--amber)">96</span></span>
+        <p>Entrenamiento en grupo con propósito. Sevilla.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#sobre">Nosotros</a></li>
+          <li><a href="#equipo">Equipo</a></li>
+          <li><a href="#actividades">Actividades</a></li>
+          <li><a href="#precios">Tarifas</a></li>
+          <li><a href="landing.html">Reservar</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="mailto:info@f96.es">info@f96.es<!-- Review --></a></li>
+          <li><a href="tel:+34000000000">[Teléfono por confirmar]</a></li>
+          <li><a href="#">[Dirección por confirmar]</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <!-- Review business name -->
+      <p>© 2025 F96. Todos los derechos reservados.</p>
+      <div class="footer-legal">
+        <a href="#">Política de privacidad</a>
+        <a href="#">Aviso legal</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── COOKIE BANNER ──────────────────────────────────────── -->
+  <div id="cookie-banner">
+    <div class="cookie-title">Cookies</div>
+    <p>
+      Usamos cookies propias y de terceros para analizar el uso del sitio y mejorar tu experiencia. Puedes aceptar todas o rechazar las no esenciales. Más info en nuestra <a href="#">política de cookies</a>.
+    </p>
+    <div class="cookie-actions">
+      <button class="cookie-accept" id="cookie-accept">Aceptar todo</button>
+      <button class="cookie-reject" id="cookie-reject">Solo esenciales</button>
+    </div>
+  </div>
+
+  <!-- ── SCRIPTS ────────────────────────────────────────────── -->
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileClose = document.getElementById('mobile-close');
+    hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    document.querySelectorAll('.mm-link').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    });
+
+    // Cookie banner
+    const banner = document.getElementById('cookie-banner');
+    const accepted = localStorage.getItem('f96_cookies');
+    if (!accepted) banner.classList.add('visible');
+    document.getElementById('cookie-accept').addEventListener('click', () => {
+      localStorage.setItem('f96_cookies', 'all');
+      banner.classList.remove('visible');
+    });
+    document.getElementById('cookie-reject').addEventListener('click', () => {
+      localStorage.setItem('f96_cookies', 'essential');
+      banner.classList.remove('visible');
+    });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.activity-card, .price-card, .cred, .stat').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity .5s ease, transform .5s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
